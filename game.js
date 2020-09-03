@@ -35,22 +35,36 @@ $(this).keypress(function () {
 		flag = true;
 	}
 });
+var flag2 = false;
+$(this).click(function () {
+	if (!flag2) {
+		$("#level-tilte").text("Level " + level);
+		level++;
+		nextSequence();
+		flag2 = true;
+	}
+});
 
 $(".btn").click(function () {
-	var userChoosenColor = $(this).attr("id");
-	userClickedPattern.push(userChoosenColor);
-	playSound(userChoosenColor);
-	$("#" + userChoosenColor)
-		.fadeOut(100)
-		.fadeIn(100);
-	animatePress(userChoosenColor);
-	checkAnswer(userClickedPattern.length - 1);
+	if (flag2) {
+		var userChoosenColor = $(this).attr("id");
+		userClickedPattern.push(userChoosenColor);
+		playSound(userChoosenColor);
+		$("#" + userChoosenColor)
+			.fadeOut(100)
+			.fadeIn(100);
+		animatePress(userChoosenColor);
+		checkAnswer(userClickedPattern.length - 1);
+	}
 });
 
 function startOver() {
 	level = 0;
 	gamePattern = [];
 	flag = false;
+	setTimeout(function () {
+		flag2 = false;
+	}, 1000);
 }
 
 function checkAnswer(curretLevel) {
