@@ -33,6 +33,7 @@ $(this).keypress(function () {
 		level++;
 		nextSequence();
 		flag = true;
+		flag2 = true;
 	}
 });
 var flag2 = false;
@@ -42,6 +43,7 @@ $(this).click(function () {
 		level++;
 		nextSequence();
 		flag2 = true;
+		flag = true;
 	}
 });
 
